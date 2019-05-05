@@ -64,20 +64,20 @@ public class App {
         post("/accessdevice/log/", (request, response) -> {
             Gson gson = new Gson();
             AccessMessage message = gson.fromJson(request.body(), AccessMessage.class);
-            accesslog.add(message.getMessage());
-            return message;
+            int id = accesslog.add(message.getMessage());
+            return "{\"id\":" + id + ",\"message:\"" + "\"" + message.getMessage() + "\"}";
         });
 
         put("/accessdevice/code", ((request, response) -> {
             Gson gson = new Gson();
             AccessCode code = gson.fromJson(request.body(), AccessCode.class);
             accesscode = code;
-            return code;
+            return gson.toJson(accesscode);
         }));
 
         delete("/accessdevice/log/", ((request, response) -> {
             accesslog.clear();
-            return null;
+            return "{}";
         }));
 
 
