@@ -65,7 +65,7 @@ public class App {
             Gson gson = new Gson();
             AccessMessage message = gson.fromJson(request.body(), AccessMessage.class);
             int id = accesslog.add(message.getMessage());
-            return "{\"id\":" + id + ",\"message:\"" + "\"" + message.getMessage() + "\"}";
+            return "{\"id\":" + id + ",\"message\":" + "\"" + message.getMessage() + "\"}";
         });
 
         put("/accessdevice/code", ((request, response) -> {
